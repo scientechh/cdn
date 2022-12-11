@@ -12,7 +12,7 @@ function asix(){
 
     let cdn = "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js";
     
-    for (let i = 1; i < 2; i++) {
+    for (let i = 0; i < 2; i++) {
         const createScript = document.createElement('script');
         document.body.append(createScript)
         createScript.setAttribute("src", cdn)
