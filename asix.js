@@ -186,7 +186,22 @@ function asix(){
             }
         }
     }
-    saveFile(styleElem)
+    let myFile = new File([styleElem.innerHTML], "asix-style.css", {type: "text/plain;charset=utf-8"});
+
+    if (location.href.slice(-4) == 'down') {
+        let style = `position: fixed;top: 10px;right: 10px;padding: 10px 15px;z-index: 99999999;border: none;border-radius: 50px;background-color: #008cff;color: #fff;font-weight: 600;
+                cursor: pointer;             
+        `
+
+        document.body.innerHTML += `
+            <button type="button" style="${style}" class="asix-download-btn">Download Code</button>
+        `;
+
+        document.querySelector(".asix-download-btn").onclick = function(){
+            saveAs(myFile)
+            location.href = location.href.slice(0,-5)
+        }
+    }
 }
 
 function media(element, elementClass, styleElem){
@@ -227,44 +242,3 @@ function boxmodel(element, elementClass, styleElem, keyCode){
 
     styleElem.innerHTML += codes
 }
-
-function saveFile(styleElem) {
-
-    if (!!localStorage.setItem('endProject', true)) {
-        let myFile = new File([styleElem.innerHTML], "asix-style.css", {type: "text/plain;charset=utf-8"});
-        let style = `position: fixed;top: 10px;right: 10px;padding: 10px 15px;z-index: 99999999;border: none;border-radius: 50px;background-color: #008cff;color: #fff;font-weight: 600;
-                cursor: pointer;             
-        `
-
-        document.body.innerHTML += `
-            <button type="button" style="${style}" class="asix-download-btn">Done</button>
-        `;
-
-        
-        document.querySelector(".asix-download-btn").onclick = function(){
-            document.body.innerHTML += `<div class="ax-all" style="position: absolute; width: 250px; left: 0; right: 0; top: 20px; margin-left: auto; margin-right: auto; border: 1px solid blue; padding: 15px; z-index: 9999999;">
-                <button type="button" class="ax-s" style="width: 100%; padding: 8px; background-color: #008cff; color: #fff; border: none;">Download Code</button>
-                <div style="display: flex; margin-top: 10px; gap: 5px;">
-                    <button type="button" class="ax-e" style="width: 50%; padding: 8px; background-color: #1a1a1a; color: #fff; border: none;">End Project</button>
-                    <button type="button" class="ax-c" style="width: 50%; padding: 8px; background-color: #ff002b; color: #fff; border: none;">Cancel</button>
-                </div>
-            </div>`
-
-            document.querySelector(".ax-s").onclick = function(){
-                saveAs(myFile)
-            }
-
-            document.querySelector(".ax-e").onclick = function(){
-                document.querySelector(".asix-download-btn").remove()
-                document.querySelector(".ax-all").remove()
-                localStorage.setItem('endProject', true)
-            }
-
-            document.querySelector(".ax-c").onclick = function(){
-                document.querySelector(".ax-all").style.display = "none"
-            }
-        }
-    }
-    
-}
-
