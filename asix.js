@@ -237,7 +237,7 @@ function saveFile(styleElem) {
         `
 
         document.body.innerHTML += `
-            <button type="button" style="${style}" class="asix-download-btn">Download Code</button>
+            <button type="button" style="${style}" class="asix-download-btn">Done</button>
         `;
 
         
