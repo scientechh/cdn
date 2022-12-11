@@ -108,12 +108,12 @@ let codeObject = {
         "dib": "display: inline-block;"
     },
 
-    media : {
-        "fs": "font-size:", 
-        "c": "color:", 
-        "w": "width:", 
-        "h": "height:", 
-    }
+    // media : {
+    //     "fs": "font-size:", 
+    //     "c": "color:", 
+    //     "w": "width:", 
+    //     "h": "height:", 
+    // }
 }
 
 function asix(){
@@ -208,15 +208,29 @@ function media(element, elementClass, styleElem){
     let elem = element.getAttribute(`ax-media`);
     let elemArr = elem.split("/");
     let fristElem = elemArr[0].slice(1,-1);
+    let codeArr = elemArr.slice(1)
     let codes = ""
+
+    let a = ""
+
+    for (const iterator of codeArr) {
+        for (const value of Object.values(codeObject)) {
+            for (const key in value) {
+                if (iterator == key) {
+                    a += value[key]
+                }
+            }
+        }
+    }
+    console.log(a);
 
     codes = `\n @media screen and (${fristElem}){
         [data-classax='${elementClass}']{
-            ${[elemArr.slice(1)]}
+            ${a}
         }
     }`
 
-
+    console.log(codes);
     styleElem.innerHTML += codes
 }
 
