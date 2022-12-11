@@ -106,10 +106,10 @@ let codeObject = {
         "dib": "display: inline-block;"
     },
 
-    media : {
-        "fs": "font-size:", 
-        "c": "color:", 
-        "w": "width:", 
-        "h": "height:", 
-    }
+//     media : {
+//         "fs": "font-size:", 
+//         "c": "color:", 
+//         "w": "width:", 
+//         "h": "height:", 
+//     }
 }
