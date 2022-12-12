@@ -222,7 +222,6 @@ function media(element, elementClass, styleElem){
             }
         }
     }
-    console.log(a);
 
     codes = `\n @media screen and (${fristElem}){
         [data-classax='${elementClass}']{
@@ -230,7 +229,6 @@ function media(element, elementClass, styleElem){
         }
     }`
 
-    console.log(codes);
     styleElem.innerHTML += codes
 }
 
@@ -239,7 +237,6 @@ function boxmodel(element, elementClass, styleElem, keyCode){
     let elemArr = elem.split("/");
     let codeStyle = "";
     let codes = "";
-    console.log(elemArr);
 
     for (const el of elemArr) {
         for (const key in codeObject[keyCode]) {
