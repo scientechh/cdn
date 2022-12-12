@@ -150,12 +150,8 @@ function asix(){
                     codeAll += `display: flex;`
                 }
 
-                if(elem.hasAttribute('ax-media')){
-                    media(elem, elemClass, styleElem)
-                }else if(elem.hasAttribute('ax-box')){
-                    boxmodel(elem, elemClass, styleElem, keyCode)
-                }else{
-                    let htmlCode = elem.getAttribute(`ax-${keyCode}`)
+
+                let htmlCode = elem.getAttribute(`ax-${keyCode}`)
                     let htmlCodeArr = htmlCode.split("/");
                     for (const iterator of htmlCodeArr) {
                         for (const key in codeObject[keyCode]) {
@@ -180,9 +176,14 @@ function asix(){
                         }
                     }
 
+                    if(elem.hasAttribute('ax-media')){
+                        media(elem, elemClass, styleElem)
+                    }else if(elem.hasAttribute('ax-box')){
+                        boxmodel(elem, elemClass, styleElem, keyCode)
+                    }
+                    
                     codeString = `[data-classax='${elemClass}']{${codeAll}}`
                     styleElem.innerHTML += codeString
-                }
             }
         }
     }
@@ -216,12 +217,20 @@ function media(element, elementClass, styleElem){
     for (const iterator of codeArr) {
         for (const value of Object.values(codeObject)) {
             for (const key in value) {
+                console.log(iterator);
+                
                 if (iterator == key) {
                     a += value[key]
+                }else if(iterator.slice(0,5) == key){
+                    a += value[key] + iterator.slice(5) + ";"
+                }else if(iterator.slice(0,1) == key){
+                    a += value[key] + iterator.slice(1) + ";"
                 }
             }
         }
     }
+
+    console.log(a);
 
     codes = `\n @media screen and (${fristElem}){
         [data-classax='${elementClass}']{
@@ -253,3 +262,4 @@ function boxmodel(element, elementClass, styleElem, keyCode){
 
     styleElem.innerHTML += codes
 }
+
